@@ -1,0 +1,110 @@
+<div class="photos-container">
+  <div class="data-container">
+    <div class="filter-container">
+      <div class="filter-name-photo-container">
+        <input class="form-control filter-name-photo" placeholder="Search name" ng-model="nameFilter">
+        <button class="btn btn-primary btn-add" ng-click="filterName()">
+          Search
+        </button>
+      </div>
+      <button class="btn btn-primary btn-add" ng-click="openAddPhotoModal()">
+        Add Photo
+      </button>
+    </div>
+    <div class="card-container">
+      <div class="card" ng-repeat="photo in photosArr">
+        <a ng-href="{{photo.url}}"><img ng-src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" class="photo" /></a>
+        <button class="btn btn-success btn-action" ng-click="editPhotoModal(photo.id,photo.title)">Edit</button>
+        <button class="btn btn-info btn-action" ng-click="movePhotoModal(photo.id, photo.albumId)">Move</button>
+        <button class="btn btn-danger btn-action" ng-click="deletePhotoModal(photo.id)">Delete</button>
+        <p>{{photo.title}}</p>
+      </div>
+    </div>
+    <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="9">
+    </ul>
+  </div>
+</div>
+
+
+<script type="text/ng-template" id="deletePhotoContent.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Delete Photo</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    Delete this photo ?
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Delete</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="movePhotoContent.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Move Photo</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="albumId">Album ID</label>
+        <input type="text" class="form-control" id="albumId" placeholder="Album Id" ng-model="$ctrl.albumId">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="editPhotoContent.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Photo</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" ng-model="$ctrl.title">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="addPhotoContent.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Add Photo</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" ng-model="$ctrl.title">
+      </div>
+      <div class="form-group">
+        <label for="thumbnailUrl">Thumbnail Url</label>
+        <input type="text" class="form-control" id="thumbnailUrl" placeholder="thumbnail url" ng-model="$ctrl.thumbnailUrl">
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input type="text" class="form-control" id="imageUrl" placeholder="image url" ng-model="$ctrl.imageUrl">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
+
+</script>

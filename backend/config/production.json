@@ -1,0 +1,8 @@
+{
+    "env": "production",
+    "secretKey": "secretKey",
+    "cors": {
+        "origin": true,
+        "credentials": true
+    }
+}

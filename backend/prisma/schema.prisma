@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Photos {
+
+  id           Int    @id @default(autoincrement())
+  albumId      Int
+  title        String
+  url          String
+  thumbnailUrl String
+
+}
+
+model User {
+
+  id       String  @id @default(uuid())
+  email    String
+  password String
+  isAdmin  Boolean
+  name     String?
+
+}

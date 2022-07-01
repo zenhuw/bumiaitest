@@ -1,0 +1,15 @@
+<div class="album-container">
+    <div class="table-container">
+        <h2>Album List</h2>
+        <table class="table">
+            <tr>
+                <th>Album Id</th>
+            </tr>
+
+            <tr ng-repeat="album in albumArr">
+                <td><a ng-href="#!/album/{{album.albumId}}">Album No {{album.albumId}}</a></td>
+            </tr>
+        </table>
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+    </div>
+</div>

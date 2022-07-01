@@ -1,0 +1,8 @@
+{
+    "env": "test",
+    "secretKey": "secretKey",
+    "cors": {
+        "origin": true,
+        "credentials": true
+    }
+}
